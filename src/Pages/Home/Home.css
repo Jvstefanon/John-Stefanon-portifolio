@@ -457,12 +457,28 @@
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: #11132e;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+
+  /* faz o Safari respeitar o canto arredondado com a imagem em zoom */
+  isolation: isolate;
+}
+
+/* fallback para navegadores sem aspect-ratio */
+@supports not (aspect-ratio: 1) {
+  .foto-container {
+    height: 0;
+    padding-top: 130%;
+  }
 }
 
 
-/* IMAGEM */
+/* IMAGEM
+   posicionada de forma absoluta para preencher o quadro em qualquer navegador
+   (no Safari, height: 100% dentro de um box com aspect-ratio não funciona) */
 
 .foto-container img {
+  position: absolute;
+  inset: 0;
+
   width: 100%;
   height: 100%;
   max-width: none;

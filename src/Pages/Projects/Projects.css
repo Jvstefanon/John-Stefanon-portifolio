@@ -1,13 +1,13 @@
 /* =========================
-   PROJETOS
+   PROJETOS (mobile-first)
 ========================= */
 
 .projects-header {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 30px;
-  margin-bottom: 60px;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 40px;
 }
 
 .projects-header .section-header {
@@ -16,23 +16,22 @@
 
 .projects-all {
   flex-shrink: 0;
+  width: 100%;
 }
 
+/* grid: 1 coluna no mobile, 2 no tablet, 3 no desktop
+   (colunas fixas por breakpoint para o card em destaque ocupar 2 delas) */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
 }
 
 .project-card {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-}
-
-/* projeto em destaque: ocupa 2 colunas */
-.project-card.featured {
-  grid-column: span 2;
+  min-width: 0;
 }
 
 /* CAPA */
@@ -46,6 +45,7 @@
 .project-cover img {
   width: 100%;
   height: 100%;
+  max-width: none;
   display: block;
   object-fit: cover;
   transition: transform 0.7s ease;
@@ -84,13 +84,13 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 24px;
+  padding: 20px;
 }
 
 .project-body h3 {
   margin: 0;
   color: #f8f8ff;
-  font-size: 1.25rem;
+  font-size: clamp(1.15rem, 1.1rem + 0.2vw, 1.25rem);
   font-weight: 700;
   letter-spacing: -0.5px;
 }
@@ -123,15 +123,18 @@
 
 .project-links {
   display: flex;
-  gap: 18px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 18px;
   margin-top: auto;
-  padding-top: 22px;
+  padding-top: 14px;
 }
 
 .project-links a {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  min-height: 44px;
   color: #c4c5d6;
   text-decoration: none;
   font-size: 0.9rem;
@@ -148,6 +151,7 @@
   display: inline-flex;
   align-items: center;
   gap: 7px;
+  min-height: 44px;
   color: #8d8ea6;
   font-size: 0.85rem;
   font-weight: 500;
@@ -162,31 +166,44 @@
   box-shadow: 0 0 8px rgba(63, 178, 127, 0.6);
 }
 
-/* RESPONSIVO */
+/* TABLET: 2 colunas, destaque ocupa a linha inteira */
 
-@media (max-width: 1100px) {
-  .projects-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 900px) {
+@media (min-width: 768px) {
   .projects-header {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-@media (max-width: 650px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .project-card.featured {
-    grid-column: auto;
+    margin-bottom: 50px;
   }
 
   .projects-all {
-    width: 100%;
+    width: auto;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .project-card.featured {
+    grid-column: span 2;
+  }
+
+  .project-body {
+    padding: 24px;
+  }
+}
+
+/* DESKTOP: 3 colunas, destaque ocupa 2 */
+
+@media (min-width: 1024px) {
+  .projects-header {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 60px;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
   }
 }

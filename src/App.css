@@ -1,8 +1,16 @@
 @import "tailwindcss";
 
 /* =========================
-   BASE GLOBAL
+   BASE GLOBAL (mobile-first)
+   Breakpoints: 768px (tablet) · 1024px (desktop) · 1440px (widescreen)
 ========================= */
+
+:root {
+  /* margem lateral das seções */
+  --gutter: 6%;
+  /* altura da navbar (usada no scroll até as âncoras) */
+  --nav-height: 68px;
+}
 
 html {
   scroll-behavior: smooth;
@@ -13,6 +21,13 @@ body {
   background: #08091a;
   color: white;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  overflow-x: clip;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
 }
 
 /* =========================
@@ -22,8 +37,8 @@ body {
 .page-section {
   position: relative;
   overflow: hidden;
-  padding: 130px 7% 110px;
-  scroll-margin-top: 78px;
+  padding: 90px var(--gutter) 80px;
+  scroll-margin-top: var(--nav-height);
   color: white;
   background:
     radial-gradient(circle at 85% 15%, rgba(80, 70, 220, 0.12), transparent 30%),
@@ -43,25 +58,22 @@ body {
   content: "";
   position: absolute;
   top: 0;
-  left: 7%;
-  right: 7%;
+  left: var(--gutter);
+  right: var(--gutter);
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(124, 108, 255, 0.25), transparent);
 }
 
 .section-inner {
+  width: 100%;
   max-width: 1400px;
   margin: 0 auto;
 }
 
+/* no mobile/tablet o cabeçalho fica centralizado */
 .section-header {
   max-width: 640px;
-  margin-bottom: 60px;
-}
-
-.section-header.center {
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto 40px;
   text-align: center;
 }
 
@@ -90,11 +102,12 @@ body {
 
 .section-title {
   margin: 0;
-  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  font-size: clamp(2.2rem, 1.6rem + 2.6vw, 3.8rem);
   line-height: 1.05;
-  letter-spacing: -2.5px;
+  letter-spacing: clamp(-2.5px, -0.18vw, -1.5px);
   font-weight: 800;
   color: #f8f8ff;
+  overflow-wrap: break-word;
 }
 
 .section-title span {
@@ -107,7 +120,7 @@ body {
 .section-description {
   margin-top: 20px;
   color: #a6a7bb;
-  font-size: 1.05rem;
+  font-size: clamp(1rem, 0.95rem + 0.2vw, 1.05rem);
   line-height: 1.7;
 }
 
@@ -129,24 +142,57 @@ body {
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(124, 108, 255, 0.08);
 }
 
-@media (max-width: 900px) {
+/* =========================
+   TABLET
+========================= */
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 5%;
+    --nav-height: 78px;
+  }
+
   .page-section {
-    padding: 100px 5% 90px;
+    padding: 100px var(--gutter) 90px;
   }
 
   .section-header {
+    margin-bottom: 50px;
+  }
+}
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media (min-width: 1024px) {
+  :root {
+    --gutter: 7%;
+  }
+
+  .page-section {
+    padding: 130px var(--gutter) 110px;
+  }
+
+  /* no desktop o cabeçalho volta a ficar alinhado à esquerda */
+  .section-header {
+    margin: 0 0 60px;
+    text-align: left;
+  }
+
+  .section-header.center {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
   }
 }
 
-@media (max-width: 500px) {
-  .page-section {
-    padding: 90px 6% 80px;
-  }
+/* =========================
+   WIDESCREEN
+========================= */
 
-  .section-title {
-    letter-spacing: -1.5px;
+@media (min-width: 1440px) {
+  .page-section {
+    padding: 150px var(--gutter) 130px;
   }
 }

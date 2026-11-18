@@ -1,29 +1,54 @@
+import { useEffect, useState } from 'react'
 import './Home.css'
 
 import { FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Menu, X } from "lucide-react";
 
 function Home() {
+  // menu hambúrguer (abaixo de 768px)
+  const [menuOpen, setMenuOpen] = useState(false);
+  const closeMenu = () => setMenuOpen(false);
+
+  // fecha o menu com a tecla Esc
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e) => e.key === "Escape" && setMenuOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
   return (
     <div>
       <section id="home" className="home-section">
 
         {/* NAVBAR */}
         <header className="navbar">
-          <a href="#home" className="logo">
+          <a href="#home" className="logo" onClick={closeMenu}>
             JV<span>.</span>
           </a>
 
-          <nav>
-            <a href="#home">Home</a>
-            <a href="#about">Sobre</a>
-            <a href="#projetos">Projetos</a>
-            <a href="#formacao">Formação</a>
+          <nav id="main-menu" className={menuOpen ? "open" : ""}>
+            <a href="#home" onClick={closeMenu}>Home</a>
+            <a href="#about" onClick={closeMenu}>Sobre</a>
+            <a href="#projetos" onClick={closeMenu}>Projetos</a>
+            <a href="#formacao" onClick={closeMenu}>Formação</a>
+            <a href="#contato" className="nav-mobile-only" onClick={closeMenu}>Contato</a>
           </nav>
 
           <a href="#contato" className="contact-nav">
             Contato <ArrowUpRight size={16} />
           </a>
+
+          <button
+            type="button"
+            className="nav-toggle"
+            aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={menuOpen}
+            aria-controls="main-menu"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </header>
 
 

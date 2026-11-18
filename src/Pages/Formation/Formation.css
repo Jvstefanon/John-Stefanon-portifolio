@@ -1,18 +1,19 @@
 /* =========================
-   FORMAÇÃO
+   FORMAÇÃO (mobile-first)
 ========================= */
 
+/* colunas Acadêmica / Experiência: empilhadas no mobile, lado a lado no desktop */
 .formation-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 40px;
 }
 
 .formation-column-title {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 0 0 26px;
+  margin: 0 0 22px;
   color: #d7d7e5;
   font-size: 1.1rem;
   font-weight: 600;
@@ -26,7 +27,7 @@
 
 .timeline {
   position: relative;
-  padding-left: 30px;
+  padding-left: 26px;
 }
 
 .timeline::before {
@@ -44,13 +45,13 @@
 }
 
 .timeline-item + .timeline-item {
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
 .timeline-dot {
   position: absolute;
-  top: 28px;
-  left: -30px;
+  top: 26px;
+  left: -26px;
   width: 13px;
   height: 13px;
   border-radius: 50%;
@@ -64,7 +65,7 @@
 }
 
 .formation-card {
-  padding: 24px;
+  padding: 20px;
 }
 
 .formation-period {
@@ -79,7 +80,7 @@
 .formation-card h4 {
   margin: 12px 0 0;
   color: #f8f8ff;
-  font-size: 1.2rem;
+  font-size: clamp(1.1rem, 1.05rem + 0.2vw, 1.2rem);
   font-weight: 700;
   letter-spacing: -0.4px;
 }
@@ -100,8 +101,9 @@
 /* CURSOS */
 
 .courses-block {
+  width: 100%;
   max-width: 760px;
-  margin: 70px auto 0;
+  margin: 50px auto 0;
 }
 
 .courses-title {
@@ -111,14 +113,14 @@
 .courses-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 .course-card {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 18px 20px;
+  gap: 14px;
+  padding: 16px;
 }
 
 .course-card:hover {
@@ -148,6 +150,7 @@
   color: #f0f0fa;
   font-size: 1rem;
   font-weight: 600;
+  overflow-wrap: break-word;
 }
 
 .course-info p {
@@ -157,16 +160,59 @@
 }
 
 .course-year {
+  flex-shrink: 0;
   color: #73758d;
   font-size: 0.85rem;
   font-weight: 500;
 }
 
-/* RESPONSIVO */
+/* TABLET */
 
-@media (max-width: 900px) {
+@media (min-width: 768px) {
+  .timeline {
+    padding-left: 30px;
+  }
+
+  .timeline-item + .timeline-item {
+    margin-top: 20px;
+  }
+
+  .timeline-dot {
+    top: 28px;
+    left: -30px;
+  }
+
+  .formation-card {
+    padding: 24px;
+  }
+
+  .formation-column-title {
+    margin-bottom: 26px;
+  }
+
+  .courses-block {
+    margin-top: 60px;
+  }
+
+  .courses-list {
+    gap: 14px;
+  }
+
+  .course-card {
+    gap: 16px;
+    padding: 18px 20px;
+  }
+}
+
+/* DESKTOP: duas colunas */
+
+@media (min-width: 1024px) {
   .formation-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 50px;
+  }
+
+  .courses-block {
+    margin-top: 70px;
   }
 }

@@ -201,12 +201,12 @@
   min-height: 100svh;
   margin: 0 auto;
 
-  padding: calc(var(--nav-height) + 32px) var(--gutter) 60px;
+  padding: calc(var(--nav-height) + 28px) var(--gutter) 60px;
 
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
-  gap: 50px;
+  gap: 32px;
 
   text-align: center;
 }
@@ -419,6 +419,9 @@
 .hero-image-area {
   position: relative;
 
+  /* no mobile/tablet a foto vem antes do texto */
+  order: -1;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -448,7 +451,8 @@
   position: relative;
   z-index: 2;
 
-  width: min(100%, clamp(280px, 75vw, 430px));
+  /* menor no mobile, cresce até 430px no desktop */
+  width: min(100%, clamp(180px, 50vw, 240px));
   aspect-ratio: 43 / 56;
 
   overflow: hidden;
@@ -576,7 +580,7 @@
 
   .hero-container {
     padding: calc(var(--nav-height) + 42px) var(--gutter) 70px;
-    gap: 60px;
+    gap: 44px;
   }
 
   .hero-buttons {
@@ -586,6 +590,7 @@
   }
 
   .foto-container {
+    width: min(100%, 300px);
     border-radius: 28px;
   }
 }
@@ -604,7 +609,17 @@
   /* texto à esquerda, foto à direita */
   .hero-container {
     grid-template-columns: 1fr 0.85fr;
+    gap: 60px;
     text-align: left;
+  }
+
+  /* no desktop a foto volta para a direita, no tamanho original */
+  .hero-image-area {
+    order: 0;
+  }
+
+  .foto-container {
+    width: min(100%, 430px);
   }
 
   .hero-content {

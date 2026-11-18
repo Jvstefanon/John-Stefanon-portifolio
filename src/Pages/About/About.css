@@ -2,20 +2,40 @@
    SOBRE (mobile-first)
 ========================= */
 
+/* Mobile/tablet: uma coluna só. O bloco de texto "se desfaz" (display: contents)
+   para a foto poder entrar entre o título e os parágrafos:
+   tag "Sobre mim" → título → foto → texto, números, tecnologias, botão */
 .about-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
-  gap: 50px;
+  display: flex;
+  flex-direction: column;
   text-align: center;
+}
+
+.about-content {
+  display: contents;
+}
+
+.about-content > * {
+  order: 4;
+}
+
+.about-content > .section-tag {
+  order: 1;
+  align-self: center;
+}
+
+.about-content > .section-title {
+  order: 2;
 }
 
 /* FOTO */
 
 .about-image-area {
+  order: 3;
   position: relative;
   display: flex;
   justify-content: center;
+  margin: 28px 0 8px;
 }
 
 .about-glow {
@@ -34,7 +54,8 @@
 .about-foto {
   position: relative;
   z-index: 2;
-  width: min(100%, clamp(270px, 70vw, 400px));
+  /* menor no mobile, cresce até 400px no desktop */
+  width: min(100%, clamp(180px, 50vw, 240px));
   aspect-ratio: 40 / 52;
   overflow: hidden;
   border-radius: 22px;
@@ -156,11 +177,12 @@
 /* TABLET */
 
 @media (min-width: 768px) {
-  .about-container {
-    gap: 60px;
+  .about-image-area {
+    margin: 36px 0 12px;
   }
 
   .about-foto {
+    width: min(100%, 300px);
     border-radius: 28px;
   }
 
@@ -170,6 +192,7 @@
 
   .about-button {
     width: auto;
+    align-self: center;
   }
 }
 
@@ -177,9 +200,26 @@
 
 @media (min-width: 1024px) {
   .about-container {
+    display: grid;
     grid-template-columns: 0.8fr 1fr;
+    align-items: center;
     gap: 80px;
     text-align: left;
+  }
+
+  /* o bloco de texto volta a ser uma coluna normal */
+  .about-content {
+    display: block;
+  }
+
+  /* foto volta para a coluna da esquerda */
+  .about-image-area {
+    order: 0;
+    margin: 0;
+  }
+
+  .about-foto {
+    width: min(100%, 400px);
   }
 
   .about-stats,

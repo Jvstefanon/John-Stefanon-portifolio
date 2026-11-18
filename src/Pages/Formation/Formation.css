@@ -1,0 +1,172 @@
+/* =========================
+   FORMAÇÃO
+========================= */
+
+.formation-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+
+.formation-column-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 26px;
+  color: #d7d7e5;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.formation-column-title svg {
+  color: #8b7fff;
+}
+
+/* TIMELINE */
+
+.timeline {
+  position: relative;
+  padding-left: 30px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 6px;
+  width: 1px;
+  background: linear-gradient(180deg, rgba(124, 108, 255, 0.6), rgba(124, 108, 255, 0.05));
+}
+
+.timeline-item {
+  position: relative;
+}
+
+.timeline-item + .timeline-item {
+  margin-top: 20px;
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 28px;
+  left: -30px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 2px solid #7c6cff;
+  background: #08091a;
+}
+
+.timeline-dot.current {
+  background: #7c6cff;
+  box-shadow: 0 0 14px #7c6cff;
+}
+
+.formation-card {
+  padding: 24px;
+}
+
+.formation-period {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #a9a1ff;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.formation-card h4 {
+  margin: 12px 0 0;
+  color: #f8f8ff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+
+.formation-institution {
+  margin: 6px 0 0;
+  color: #c4c5d6;
+  font-size: 0.95rem;
+}
+
+.formation-description {
+  margin: 14px 0 0;
+  color: #9d9eb4;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* CURSOS */
+
+.courses-block {
+  max-width: 760px;
+  margin: 70px auto 0;
+}
+
+.courses-title {
+  justify-content: center;
+}
+
+.courses-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.course-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+}
+
+.course-card:hover {
+  transform: translateX(5px);
+}
+
+.course-icon {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: #8b7fff;
+  border: 1px solid rgba(124, 108, 255, 0.3);
+  background: rgba(124, 108, 255, 0.1);
+}
+
+.course-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.course-info h4 {
+  margin: 0;
+  color: #f0f0fa;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.course-info p {
+  margin: 4px 0 0;
+  color: #8d8ea6;
+  font-size: 0.85rem;
+}
+
+.course-year {
+  color: #73758d;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 900px) {
+  .formation-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+}

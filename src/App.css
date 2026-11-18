@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+/* =========================
+   BASE GLOBAL
+========================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #08091a;
+  color: white;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* =========================
+   SEÇÕES (padrão compartilhado)
+========================= */
+
+.page-section {
+  position: relative;
+  overflow: hidden;
+  padding: 130px 7% 110px;
+  scroll-margin-top: 78px;
+  color: white;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(80, 70, 220, 0.12), transparent 30%),
+    radial-gradient(circle at 10% 85%, rgba(70, 70, 220, 0.08), transparent 28%),
+    #08091a;
+}
+
+.page-section.alt {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(80, 70, 220, 0.14), transparent 30%),
+    radial-gradient(circle at 90% 80%, rgba(70, 70, 220, 0.1), transparent 28%),
+    linear-gradient(180deg, #0a0b21 0%, #0c0e29 100%);
+}
+
+/* linha sutil separando as seções */
+.page-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 7%;
+  right: 7%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(124, 108, 255, 0.25), transparent);
+}
+
+.section-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-header {
+  max-width: 640px;
+  margin-bottom: 60px;
+}
+
+.section-header.center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 13px;
+  margin-bottom: 20px;
+  border-radius: 50px;
+  border: 1px solid rgba(124, 108, 255, 0.35);
+  background: rgba(124, 108, 255, 0.08);
+  color: #a9a1ff;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.section-tag::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: #7c6cff;
+  box-shadow: 0 0 12px #7c6cff;
+}
+
+.section-title {
+  margin: 0;
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  line-height: 1.05;
+  letter-spacing: -2.5px;
+  font-weight: 800;
+  color: #f8f8ff;
+}
+
+.section-title span {
+  background: linear-gradient(90deg, #ffffff, #8e82ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-description {
+  margin-top: 20px;
+  color: #a6a7bb;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* CARD padrão (vidro escuro) */
+
+.glass-card {
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: 0.35s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(124, 108, 255, 0.4);
+  background: rgba(124, 108, 255, 0.05);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(124, 108, 255, 0.08);
+}
+
+@media (max-width: 900px) {
+  .page-section {
+    padding: 100px 5% 90px;
+  }
+
+  .section-header {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+}
+
+@media (max-width: 500px) {
+  .page-section {
+    padding: 90px 6% 80px;
+  }
+
+  .section-title {
+    letter-spacing: -1.5px;
+  }
+}
